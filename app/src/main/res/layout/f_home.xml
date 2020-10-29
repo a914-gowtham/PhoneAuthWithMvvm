@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="userId"
+            type="String" />
+        <variable
+            name="mobile"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            style="@style/VView"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/txt_uid"
+                style="@style/TxtRgStyle"
+                android:text="@{userId}" />
+
+            <TextView
+                android:id="@+id/txt_number"
+                style="@style/TxtRgStyle"
+                android:text="@{mobile}" />
+
+            <Button
+                android:id="@+id/btn_log_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

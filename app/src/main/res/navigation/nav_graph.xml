@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FLogin">
+
+    <fragment
+        android:id="@+id/FCountries"
+        android:name="com.gowtham.firebasephoneauthwithmvvm.fragments.countries.FCountries"
+        android:label="FCountries"
+        tools:layout="@layout/f_countries"/>
+    <fragment
+        android:id="@+id/FVerify"
+        android:name="com.gowtham.firebasephoneauthwithmvvm.fragments.verify.FVerify"
+        android:label="FVerify"
+        tools:layout="@layout/f_verify">
+        <action
+            android:id="@+id/action_FVerify_to_FHome"
+            app:destination="@id/FHome"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/FLogin"
+        android:name="com.gowtham.firebasephoneauthwithmvvm.fragments.login.FLogin"
+        android:label="FLogin"
+        tools:layout="@layout/f_login">
+        <action
+            android:id="@+id/action_FLogin_to_FCountries"
+            app:destination="@id/FCountries" />
+        <action
+            android:id="@+id/action_FLogin_to_FVerify"
+            app:destination="@id/FVerify" />
+        <action
+            android:id="@+id/action_FLogin_to_FHome"
+            app:destination="@id/FHome"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/FHome"
+        android:name="com.gowtham.firebasephoneauthwithmvvm.fragments.home.FHome"
+        android:label="FHome"
+        tools:layout="@layout/f_home">
+
+        <argument
+            android:defaultValue="empty"
+            android:name="userId"
+            app:argType="string"/>
+
+        <argument
+            android:defaultValue="empty"
+            android:name="mobile"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_FHome_to_FLogin"
+            app:destination="@id/FLogin"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+</navigation>

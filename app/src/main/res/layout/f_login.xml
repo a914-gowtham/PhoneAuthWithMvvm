@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.gowtham.firebasephoneauthwithmvvm.fragments.verify.AuthViewModel" />
+    </data>
+
+    <RelativeLayout
+        style="@style/FView"
+        android:gravity="center">
+
+        <LinearLayout
+            style="@style/VView"
+            android:padding="16dp"
+            android:layout_marginBottom="40dp">
+
+        <TextView
+            style="@style/TxtRgStyle"
+            android:layout_marginTop="10dp"
+            android:text="@string/txt_enter_mob_no" />
+
+            <LinearLayout
+                style="@style/LView"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_edit_bg">
+
+                <TextView
+                    style="@style/WView"
+                    android:layout_marginStart="5dp"
+                    app:drawableEndCompat="@drawable/ic_arrow_down"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:id="@+id/txt_country_code"
+                    android:text="@{viewmodel.country.noCode}"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    style="@style/LWView"
+                    android:id="@+id/edt_mobile"
+                    android:background="@android:color/transparent"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:text="@={viewmodel.mobile}"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/BtnStyle"
+                android:id="@+id/btn_get_otp"
+                android:layout_marginTop="60dp"
+                android:text="Send OTP" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

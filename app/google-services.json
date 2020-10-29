@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "85148698677",
+    "firebase_url": "https://fir-phoneauth-f8214.firebaseio.com",
+    "project_id": "fir-phoneauth-f8214",
+    "storage_bucket": "fir-phoneauth-f8214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85148698677:android:b58ca7e348e3aa2700c97c",
+        "android_client_info": {
+          "package_name": "com.gowtham.firebasephoneauthwithmvvm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85148698677-ca3dafh2u934b013ipr8n1favg8r8qi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo6Ia3B50k_CRo13pbZvRV2Ho5A4AJ0aQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85148698677-ca3dafh2u934b013ipr8n1favg8r8qi4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

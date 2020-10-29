@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FirebasePhoneAuthWithMvvm</string>
+    <string name="txt_enter_mob_no">Enter Mobile Number</string>
+    <string name="txt_search">Search</string>
+    <string name="txt_enter_otp">Enter the OTP sent to </string>
+
+</resources>
