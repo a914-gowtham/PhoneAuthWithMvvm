@@ -40,7 +40,7 @@ class AuthRepo @Inject constructor(
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(number)
             .setTimeout(60L, TimeUnit.SECONDS)
-            .setActivity(activity)
+            .setActivity(actContxt)
             .setCallbacks(listener)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
