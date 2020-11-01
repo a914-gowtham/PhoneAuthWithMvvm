@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.gowtham.firebasephoneauthwithmvvm.R
 import com.gowtham.firebasephoneauthwithmvvm.databinding.FHomeBinding
 
 class FHome : Fragment() {
@@ -28,6 +30,10 @@ class FHome : Fragment() {
 
         binding.userId=args.userId
         binding.mobile=args.mobile
+
+        binding.btnLogOut.setOnClickListener {
+            findNavController().navigate(R.id.action_FHome_to_FLogin)
+        }
 
 
     }

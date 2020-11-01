@@ -1,5 +1,6 @@
 package com.gowtham.firebasephoneauthwithmvvm.fragments.verify
 
+import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.util.Log
@@ -22,12 +23,11 @@ import javax.inject.Inject
 
 class AuthRepo @Inject constructor(
     @ActivityRetainedScoped val actContxt: MainActivity,
-    @ApplicationContext val context: Context) :
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+    @ApplicationContext val context: Context) {
 
     private val verificationId: MutableLiveData<String> = MutableLiveData()
 
-    private val credential: MutableLiveData<PhoneAuthCredential> = MutableLiveData()
+    val credential: MutableLiveData<PhoneAuthCredential> = MutableLiveData()
 
     private val taskResult: MutableLiveData<Task<AuthResult>> = MutableLiveData()
 
@@ -35,46 +35,15 @@ class AuthRepo @Inject constructor(
 
     private val auth = FirebaseAuth.getInstance()
 
-    fun sendOtp(country: Country, mobile: String) {
+    fun sendOtp(activity: Activity,country: Country, mobile: String) {
         val number = country.noCode + " " + mobile
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            number,
-            60,
-            TimeUnit.SECONDS,
-            actContxt,
-            this
-        )
- /*       val options = PhoneAuthOptions.newBuilder(auth)
+        val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(number)
             .setTimeout(60L, TimeUnit.SECONDS)
-            .setActivity(actContxt)
-            .setCallbacks(this)
+            .setActivity(activity)
+            .setCallbacks(listener)
             .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)*/
-    }
-
-    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-        Log.d("TAG", "onVerificationCompleted:$credential")
-        this.credential.value = credential
-        Handler().postDelayed({
-            signInWithPhoneAuthCredential(credential)
-        }, 1000)
-    }
-
-    override fun onVerificationFailed(exp: FirebaseException) {
-        failedState.value = LogInFailedState.Verification
-        Log.e("TAG", "onVerificationFailed: ${exp.message}")
-        when (exp) {
-            is FirebaseAuthInvalidCredentialsException ->
-                toast(context, "Invalid Request")
-            else -> toast(context, exp.message.toString())
-        }
-    }
-
-    override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
-        Log.d("TAG", "onCodeSent:$verificationId")
-        this.verificationId.value = verificationId
-        toast(context, "Verification code sent successfully")
+        PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -119,5 +88,36 @@ class AuthRepo @Inject constructor(
 
     fun getFailed(): LiveData<LogInFailedState> {
         return failedState
+    }
+
+    private val listener=object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+            Log.d("TAG", "onVerificationCompleted:$credential")
+            this@AuthRepo.credential.value = credential
+            Handler().postDelayed({
+                signInWithPhoneAuthCredential(credential)
+            }, 1000)
+        }
+
+        override fun onVerificationFailed(e: FirebaseException) {
+            failedState.value = LogInFailedState.Verification
+            Log.e("TAG", "onVerificationFailed: ${e.message}")
+            when (e) {
+                is FirebaseAuthInvalidCredentialsException ->
+                    toast(context, "Invalid Request")
+                else -> toast(context, e.message.toString())
+            }
+        }
+
+        override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+            super.onCodeSent(verificationId, token)
+            Log.d("TAG", "onCodeSent:$verificationId")
+            this@AuthRepo.verificationId.value = verificationId
+            toast(context, "Verification code sent successfully")
+        }
+
+        override fun onCodeAutoRetrievalTimeOut(p0: String) {
+            super.onCodeAutoRetrievalTimeOut(p0)
+        }
     }
 }

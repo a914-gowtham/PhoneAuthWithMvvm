@@ -79,7 +79,7 @@ class FLogin : Fragment() {
                 )
                 Utils.isNoInternet(requireContext()) -> toast(requireActivity(),"No Internet Connection!")
                 else -> {
-                    viewModel.sendOtp()
+                    viewModel.sendOtp(requireActivity())
                     viewModel.setProgress(true)
                 }
             }

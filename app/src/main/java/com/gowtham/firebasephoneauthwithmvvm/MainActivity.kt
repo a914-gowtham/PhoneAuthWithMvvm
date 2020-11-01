@@ -2,13 +2,16 @@ package com.gowtham.firebasephoneauthwithmvvm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.gowtham.firebasephoneauthwithmvvm.databinding.ActivityMainBinding

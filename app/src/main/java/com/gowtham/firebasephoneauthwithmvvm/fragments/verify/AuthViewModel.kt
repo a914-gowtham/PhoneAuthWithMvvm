@@ -1,5 +1,6 @@
 package com.gowtham.firebasephoneauthwithmvvm.fragments.verify
 
+import android.app.Activity
 import android.content.Context
 import android.os.CountDownTimer
 import android.widget.Toast
@@ -57,16 +58,19 @@ constructor(@ApplicationContext private val context: Context,
 
     var lastRequestedMobile=""
 
+    private lateinit var activity: Activity
+
     private lateinit var timer: CountDownTimer
 
     fun setCountry(country: Country) {
         this.country.value = country
     }
 
-    fun sendOtp() {
+    fun sendOtp(activity: Activity) {
         authRepo.clearOldAuth()
+        this.activity=activity
         lastRequestedMobile="${country.value?.noCode} ${mobile.value}"
-        authRepo.sendOtp(country.value!!, mobile.value!!)
+        authRepo.sendOtp(activity,country.value!!, mobile.value!!)
     }
 
     fun setProgress(show: Boolean) {
@@ -80,7 +84,7 @@ constructor(@ApplicationContext private val context: Context,
     fun resendClicked() {
         if (canResend) {
             setVProgress(true)
-            sendOtp()
+            sendOtp(activity)
         }
     }
 
@@ -189,4 +193,10 @@ constructor(@ApplicationContext private val context: Context,
                 Toast.makeText(context, e.message.toString(), Toast.LENGTH_SHORT).show()
             }
     }
+
+    fun clearAll(){
+        userProfileGot.value=null
+        authRepo.clearOldAuth()
+    }
+
 }

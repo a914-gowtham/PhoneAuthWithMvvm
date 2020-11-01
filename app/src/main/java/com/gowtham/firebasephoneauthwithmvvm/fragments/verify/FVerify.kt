@@ -218,6 +218,7 @@ class FVerify : Fragment() {
     }
 
     override fun onDestroy() {
+        viewModel.clearAll()
         progressView?.dismissIfShowing()
         super.onDestroy()
     }

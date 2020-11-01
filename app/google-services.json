@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "85148698677-v8f38647i8706ra58fk9i9i6f0ctejgh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gowtham.firebasephoneauthwithmvvm",
+            "certificate_hash": "8f067951f97ceb66ed871e1bdf62404f32ce1101"
+          }
+        },
+        {
           "client_id": "85148698677-ca3dafh2u934b013ipr8n1favg8r8qi4.apps.googleusercontent.com",
           "client_type": 3
         }
